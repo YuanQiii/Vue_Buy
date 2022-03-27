@@ -1,0 +1,112 @@
+<!--
+ * @Author: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-15 20:59:27
+ * @FilePath: \vue_buy\src\views\home\Home.vue
+-->
+<template>
+  <div id="home">
+    <!-- 骨架屏幕  数据未加载时显示占位-->
+    <home-skeleton v-show="isShowLoading" />
+
+    <div v-show="!isShowLoading">
+      <div class="bg">
+        <img class="image" src="../../images/home/backImage.png" alt="" />
+      </div>
+
+      <van-sticky offset-top="2rem">
+        <home-header :goodsList="goodsList" />
+      </van-sticky>
+
+      <div class="head">
+        <swiper :sowingList="sowingList" />
+        <tip :homeAd="homeAd" />
+      </div>
+      <div>
+        <home-nav :navList="navList" />
+        <home-vip />
+      </div>
+      <flash-buy :flashSalProductList="flashSalProductList" />
+      <tabbar-goods-item
+        :tabbarAllProductList="tabbarAllProductList"
+        :flashSalProductList="flashSalProductList"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import HomeSkeleton from "./components/skeleton/HomeSkeleton.vue";
+
+import { HomeApi } from "@/api/index.js";
+import HomeHeader from "./components/header/HomeHeader.vue";
+import Swiper from "./components/Swiper/Swiper.vue";
+import Tip from "./components/tip/Tip.vue";
+import HomeNav from "./components/nav/HomeNav.vue";
+import HomeVip from "./components/vip/HomeVip.vue";
+import FlashBuy from "./components/flash/FlashBuy.vue";
+import TabbarGoodsItem from "./components/tabbar/TabbarGoodsItem.vue";
+
+export default {
+  name: "Home",
+  components: {
+    HomeSkeleton,
+    HomeHeader,
+    Swiper,
+    Tip,
+    HomeNav,
+    HomeVip,
+    FlashBuy,
+    TabbarGoodsItem,
+  },
+  created() {
+    this.getHomeData();
+  },
+  data() {
+    return {
+      sowingList: [], // 首页轮播图数据
+      isShowLoading: true, // 是否加载动画
+      navList: [],
+      flashSalProductList: [], // 限时抢购
+      tabbarAllProductList: [],
+      specialZone: {}, // 特色专区数据
+      homeAd: "", // 首页广告
+    };
+  },
+  computed: {
+    goodsList() {
+      let arr = this.flashSalProductList.concat(this.tabbarAllProductList);
+      return arr;
+    },
+  },
+  methods: {
+    getHomeData() {
+      HomeApi().then((response) => {
+        if (response["status"] == 200) {
+          let data = response.data.data;
+          this.sowingList = data.list[0].icon_list;
+          this.navList = data.list[2].icon_list;
+          this.flashSalProductList = data.list[3].product_list;
+          this.tabbarAllProductList = data.list[12].product_list;
+          this.isShowLoading = false;
+          this.specialZone = data.special_zone;
+          this.homeAd = data.home_ad.image_url;
+        }
+      });
+    },
+  },
+};
+</script>
+<style lang="less" scoped>
+#home {
+  position: relative;
+  .bg {
+    .image {
+      position: absolute;
+      height: 22rem;
+      left: -100px;
+      top: -3.3rem;
+    }
+  }
+}
+</style>
