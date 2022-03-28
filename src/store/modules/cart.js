@@ -1,11 +1,10 @@
 /*
- * @Author: your name
- * @Date: 2022-03-21 17:05:40
- * @LastEditTime: 2022-03-25 15:59:48
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Autor: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-28 09:50:18
  * @FilePath: \vue_buy\src\store\modules\cart.js
  */
+
 import Vue from "vue";
 import {
   ADD_ADDRESS,
@@ -18,12 +17,17 @@ import {
   UPDATE_GOODS_CART_NUM,
   UPDATE_GOODS_CART_CHECKED,
   UPDATE_ORDER_ADDRESS,
-  ADD_COUPON
+  ADD_COUPON,
 } from "../types";
 
 const state = {
+  // 购物车数组
   cartList: [],
+
+  // 订单地址数据
   orderAddress: {},
+
+  // 优惠券数组
   couponList: [
     {
       // 优惠券信息
@@ -57,16 +61,18 @@ const state = {
       reason: "",
       value: 250,
       name: "优惠券",
-      startAt: 1646064000,
+      startAt: 1643644800,
       endAt: 1646064000,
       valueDesc: "2.5",
       unitDesc: "元",
     },
   ],
-  disabledCouponList: [],
+
+  // 全部地址数组
   addressList: [],
 };
 const getters = {
+  // 购物车总价
   totalPrice(state) {
     let total = 0;
     state.cartList.forEach((element) => {
@@ -74,9 +80,10 @@ const getters = {
         total += element.price * element.cart_num * 100;
       }
     });
-    console.log("total", total);
     return total;
   },
+
+  // 默认地址id
   defaultAddressId(state) {
     let id = 0;
     state.addressList.forEach((element) => {
@@ -88,7 +95,9 @@ const getters = {
     return id;
   },
 };
+
 const mutations = {
+  // 添加地址
   [ADD_ADDRESS](state, payload, index = -1) {
     if (index == -1) {
       Vue.set(state.addressList, state.addressList.length, payload);
@@ -96,9 +105,8 @@ const mutations = {
       Vue.set(state.addressList, index, payload);
     }
   },
-  [DEL_ADDRESS](state, payload) {
-    Vue.delete(state.addressList, payload);
-  },
+
+  // 更新默认地址
   [UPDATE_DEFAULT_ADDRESS](state, payload) {
     state.addressList.forEach((element, index) => {
       if (element.id == payload) {
@@ -109,9 +117,23 @@ const mutations = {
       Vue.set(state.addressList, index, element);
     });
   },
+
+  // 清空地址
   [CLEAR_ADDRESS](state) {
     state.addressList = [];
   },
+
+  // 删除地址
+  [DEL_ADDRESS](state, payload) {
+    Vue.delete(state.addressList, payload);
+  },
+
+  // 更新订单地址
+  [UPDATE_ORDER_ADDRESS](state, payload) {
+    state.orderAddress = payload;
+  },
+
+  // 添加商品到购物车
   [ADD_GOODS_CART](state, payload) {
     let goodsExist = false;
     let temp = payload;
@@ -134,8 +156,9 @@ const mutations = {
       temp["cart_num"] = 1;
       Vue.set(state.cartList, state.cartList.length, payload);
     }
-    console.log(state.cartList);
   },
+
+  // 更新购物车里某个商品数量
   [UPDATE_GOODS_CART_NUM](state, payload) {
     state.cartList.forEach((element, index) => {
       if (element.id == payload.id) {
@@ -147,19 +170,23 @@ const mutations = {
         Vue.set(state.cartList, index, temp);
       }
     });
-    console.log(state.cartList);
   },
+
+  // 删除购物车里的商品
   [DEL_GOODS_CART](state, payload) {
     state.cartList.forEach((element, index) => {
       if (element.id == payload) {
         Vue.delete(state.cartList, index);
       }
     });
-    console.log(state.cartList);
   },
+
+  // 清空购物车
   [DEL_GOODS_CART_LIST](state) {
     state.cartList = [];
   },
+
+  // 更新购物车里商品对象的checked属性
   [UPDATE_GOODS_CART_CHECKED](state, payload) {
     state.cartList.forEach((element, index) => {
       if (element.id == payload.id) {
@@ -168,15 +195,12 @@ const mutations = {
         Vue.set(state.cartList, index, temp);
       }
     });
-    console.log(state.cartList);
   },
-  [UPDATE_ORDER_ADDRESS](state, payload) {
-    state.orderAddress = payload;
-    console.log("state.orderAddress", state.orderAddress);
-  },
+
+  // 添加优惠券
   [ADD_COUPON](state, payload) {
-    Vue.set(state.couponList, state.couponList.length, payload)
-  }
+    Vue.set(state.couponList, state.couponList.length, payload);
+  },
 };
 const actions = {};
 

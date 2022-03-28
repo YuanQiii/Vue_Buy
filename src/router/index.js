@@ -201,7 +201,7 @@ router.beforeEach((to, from, next) => {
       break;
   }
 
-  //根据字段判断是否需要登录
+  //根据属性值判断是否需要登录
   if (to.meta.requireAuth) {
     if (store.state.user.userInfo.token != null) {
       next();

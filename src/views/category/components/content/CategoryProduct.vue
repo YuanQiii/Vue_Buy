@@ -1,11 +1,4 @@
-<!--
- * @Author: your name
- * @Date: 2022-03-18 16:56:04
- * @LastEditTime: 2022-03-25 21:36:54
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \vue_buy\src\views\category\components\content\CategoryProduct.vue
--->
+
 <template>
   <div class="category-product">
     <div class="left" @click="goToGoodsDetail">
@@ -45,9 +38,13 @@ export default {
   },
   methods: {
     ...mapMutations("cart", ["ADD_GOODS_CART"]),
+
+    // 跳转到商品详情
     goToGoodsDetail() {
       _goToGoodsDetail(this, this.productDetail);
     },
+
+    // 添加到购物车
     addToCart(goods) {
       _addToCart(this, goods);
     },

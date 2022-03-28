@@ -2,9 +2,10 @@
  * @Author: YuanQiii
  * @GitHub: https://github.com/YuanQiii
  * @Date: 2022-03-18 23:43:00
- * @FilePath: \StudentSummery-Vue\src\components\login\Register.vue
+ * @FilePath: \vue_buy\src\views\login\Register.vue
 -->
 <template>
+  <!-- 注册 -->
   <div class="register">
     <van-field
       class="tel"
@@ -64,7 +65,6 @@
 <script>
 import { captchaApi, registerApi } from "@/api/index.js";
 import { mapMutations } from "vuex";
-import Moment from "moment";
 
 export default {
   name: "Register",
@@ -96,6 +96,8 @@ export default {
         return false;
       }
     },
+
+    // 检查手机号格式
     checkCaptcha() {
       if (this.captcha == this.sms) {
         this.captchaErrorMessage = "";
@@ -105,6 +107,8 @@ export default {
         return false;
       }
     },
+
+    // 检查密码格式
     checkPassword() {
       if (this.password.length < 6) {
         this.passwordErrorMessage = "密码长度最小6位";
@@ -114,6 +118,8 @@ export default {
         return true;
       }
     },
+
+    // 获取验证码
     sendCaptcha() {
       if (this.checkPhone() && this.checkPassword()) {
         captchaApi().then((response) => {
@@ -139,6 +145,8 @@ export default {
         }, 1000);
       }
     },
+
+    // 注册
     register() {
       if (this.checkPhone() && this.checkPassword() && this.checkCaptcha()) {
         this.loading = true;
@@ -152,6 +160,8 @@ export default {
         });
       }
     },
+
+    // 验证码一键复制
     captchaDialog() {
       this.$dialog.confirm({
         title: "验证码",

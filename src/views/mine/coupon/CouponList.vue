@@ -1,11 +1,10 @@
 <!--
- * @Author: your name
- * @Date: 2022-03-23 13:57:24
- * @LastEditTime: 2022-03-23 14:22:49
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Autor: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-28 09:50:18
  * @FilePath: \vue_buy\src\views\mine\coupon\CouponList.vue
 -->
+
 <template>
   <div class="coupon-list">
     <van-nav-bar
@@ -31,11 +30,10 @@
 import { mapMutations, mapState } from "vuex";
 export default {
   name: "CouponList",
-  data() {
-    return {};
-  },
   computed: {
     ...mapState("cart", ["couponList"]),
+
+    // 可用与不可用优惠券分类
     availableCouponList() {
       let arr = [[], []];
       this.couponList.forEach((element) => {

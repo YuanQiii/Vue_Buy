@@ -119,7 +119,8 @@
 
     <!-- 优惠券 -->
     <van-coupon-cell
-      :coupons="couponList"
+      :coupons="availableCouponList[0]"
+      :disabled-coupons="availableCouponList[1]"
       :chosen-coupon="chosenCoupon"
       @click="showList = true"
     />
@@ -192,6 +193,8 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 
+import { _goToGoodsDetail } from "@/utils/goToGoodsDetail";
+
 // 送货时间区间组件
 import OrderTimeInterval from "./OrderTimeInterval";
 
@@ -222,8 +225,23 @@ export default {
     ]),
     ...mapState("user", ["userInfo"]),
     ...mapGetters("cart", ["totalPrice"]),
+
+    // 根据订单地址数组长度获取到地址页面类型
     addressType() {
       return Object.keys(this.orderAddress).length ? "edit" : "add";
+    },
+
+    // 可用与不可用优惠券分类
+    availableCouponList() {
+      let arr = [[], []];
+      this.couponList.forEach((element) => {
+        if (element.available) {
+          arr[0].push(element);
+        } else {
+          arr[1].push(element);
+        }
+      });
+      return arr;
     },
 
     // 计算积分兑换人民币
@@ -257,11 +275,9 @@ export default {
   },
 
   methods: {
+    // 跳转到商品详情
     goToGoodsDetail(goods) {
-      this.$router.push({
-        name: "goodsDetail",
-        params: goods,
-      });
+      this._goToGoodsDetail(this, goods);
     },
 
     // 返回到上个界面
@@ -316,6 +332,8 @@ export default {
     showTimePickView() {
       this.showDateTimePopView = true;
     },
+
+    // 更新送货时间选择
     changeData() {
       this.showDateTimePopView = arguments[0][0];
       this.deliveryTime = arguments[0][1];

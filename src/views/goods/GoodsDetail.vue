@@ -1,5 +1,12 @@
+<!--
+ * @Autor: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-28 09:50:18
+ * @FilePath: \vue_buy\src\views\goods\GoodsDetail.vue
+-->
 <template>
-  <div id="goodsDetail">
+  <div class="goods-detail">
+    <!-- 顶部导航 -->
     <van-nav-bar
       title="商品详情"
       :fixed="true"
@@ -7,18 +14,18 @@
       @click-left="onClickLeft"
     >
     </van-nav-bar>
-    <div class="goodsDetailWrapper">
+    <div class="goods-detail-content">
       <!-- 商品图 -->
-      <div class="goodsImage">
-        <img :src="currentGoodsDetail.small_image" alt="" />
+      <div class="goods-mage">
+        <img :src="currentGoodsDetail.small_image" alt="" class="image" />
       </div>
       <!-- 限时抢购  -->
       <div class="flash" v-show="currentGoodsDetail.isFlash">
-        <div class="flashLeft">
+        <div class="flash-left">
           <span>限时抢购</span>
           <i>抢购中</i>
         </div>
-        <div class="flashRight">
+        <div class="flash-right">
           <span>距结束'</span>
           <!-- 倒计时 -->
           <van-count-down :time="time" class="countStyle" format="HH mm ss">
@@ -33,30 +40,30 @@
         </div>
       </div>
       <!-- 商品名称 -->
-      <div class="productInfo">
+      <div class="product-info">
         <div class="title">{{ currentGoodsDetail.name }}</div>
-        <div class="subTitle">{{ currentGoodsDetail.spec }}</div>
-        <span class="originPrice">{{
+        <div class="sub-title">{{ currentGoodsDetail.spec }}</div>
+        <span class="origin-price">{{
           currentGoodsDetail.origin_price | moneyFormat
         }}</span>
         <span class="price">{{ currentGoodsDetail.price }}</span>
-        <span class="totalSales"
+        <span class="total-sales"
           >已售:{{ currentGoodsDetail.total_sales }}</span
         >
         <van-divider />
-        <div class="shippingInfo">
+        <div class="shipping-info">
           <van-icon
             name="cluster-o"
           />此商品按500g/份计价,如实收少于500g将退还差价
         </div>
         <van-divider />
-        <div class="shippingInfo">
+        <div class="shipping-info">
           <van-icon name="clock-o" />最快29分钟内送达
         </div>
       </div>
       <!-- 规格 -->
       <div class="specifications">
-        <div class="specificationsTitle">规格</div>
+        <div class="specifications-title">规格</div>
         <van-divider dashed />
         <div class="conditions">
           <span>保存条件</span>
@@ -69,7 +76,7 @@
         </div>
         <van-divider dashed />
       </div>
-      <div class="showGoods">
+      <div class="show-goods">
         <img :src="currentGoodsDetail.small_image" alt="" />
         <img :src="goodsImage" alt="" />
       </div>
@@ -133,7 +140,7 @@ export default {
     onClickAddToCar() {
       _addToCart(this, this.currentGoodsDetail);
     },
-    // 点击了购物车
+    // 跳转到购物车
     onClickCar() {
       this.$router.push({ name: "cart" });
     },
@@ -141,14 +148,14 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-#goodsDetail {
+.goods-detail {
   background-color: #f5f5f5;
-  .goodsDetailWrapper {
+  .goods-detail-content {
     overflow: hidden;
     margin-top: 2.7rem;
-    .goodsImage {
+    .goods-mage {
       width: 100%;
-      img {
+      .image {
         width: 100%;
         height: 80%;
       }
@@ -159,7 +166,7 @@ export default {
       width: 100%;
       height: 2rem;
       line-height: 2rem;
-      .flashLeft {
+      .flash-left {
         width: 55%;
         background-color: #e25450;
         span {
@@ -173,7 +180,7 @@ export default {
           color: #ffffff;
         }
       }
-      .flashRight {
+      .flash-right {
         width: 45%;
         background-color: #fcefe9;
         height: 2rem;
@@ -200,19 +207,19 @@ export default {
         }
       }
     }
-    .productInfo {
+    .product-info {
       background-color: white;
       padding: 0.5rem;
       .title {
         color: black;
         font-size: 0.8rem;
       }
-      .subTitle {
+      .sub-title {
         padding: 0.5rem 0;
         color: grey;
         font-size: 0.6rem;
       }
-      .originPrice {
+      .origin-price {
         color: #e25450;
         padding-right: 0.5rem;
         font-size: 0.8rem;
@@ -222,12 +229,12 @@ export default {
         font-size: 0.5rem;
         text-decoration: line-through;
       }
-      .totalSales {
+      .total-sales {
         float: right;
         color: #e25450;
         font-size: 0.8rem;
       }
-      .shippingInfo {
+      .shipping-info {
         font-size: 0.6rem;
         height: 0.8rem;
         color: grey;
@@ -238,7 +245,7 @@ export default {
       background-color: white;
       margin-top: 1rem;
       padding-left: 0.5rem;
-      .specificationsTitle {
+      .specifications-title {
         padding-top: 1rem;
         font-size: 1rem;
         color: black;
@@ -255,7 +262,7 @@ export default {
         }
       }
     }
-    .showGoods {
+    .show-goods {
       width: 100%;
       img {
         width: 100%;

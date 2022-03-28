@@ -5,7 +5,7 @@
  * @FilePath: \mall-vue\src\views\home\components\tip\tip.vue
 -->
 <template>
-  <div id="tip">
+  <div class="tip">
     <div class="text">
       <div class="tipBox">
         <img class="image" src="../../../../images/icon/transport.png" alt="" />
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#tip {
+.tip {
   .text {
     display: flex;
     justify-content: space-around;

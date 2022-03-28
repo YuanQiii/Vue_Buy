@@ -6,8 +6,13 @@
 -->
 <template>
   <div class="mine">
+    <!-- 用户信息 -->
     <mine-info />
+
+    <!-- 订单 -->
     <mine-order />
+
+    <!-- 其他选项 -->
     <children-item
       v-for="(item, index) in children"
       :key="index"
@@ -21,7 +26,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import ChildrenItem from "./children/ChildrenItem.vue";
 import MineInfo from "./info/MineInfo.vue";
 import MineOrder from "./order/MineOrder.vue";

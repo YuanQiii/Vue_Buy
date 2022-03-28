@@ -1,7 +1,10 @@
 <template>
+  <!-- 搜索组件 -->
   <div class="search">
     <input class="inp" type="search" placeholder="搜索商品" v-model="value" />
     <van-icon name="search" class="icon" size="1.3rem" />
+
+    <!-- 搜索结果列表 -->
     <div class="result" v-show="filterGoods.length">
       <div
         class="item"
@@ -21,6 +24,7 @@ import { _goToGoodsDetail } from "@/utils/goToGoodsDetail";
 export default {
   name: "Search",
   props: {
+    // 搜索数据源
     goodsList: {
       type: Array,
       default: [],
@@ -29,10 +33,13 @@ export default {
   data() {
     return {
       value: "",
+
+      // 搜索结果
       filterGoods: [],
     };
   },
   watch: {
+    // 监听输入框关键字
     value(newValue) {
       let arr = [];
       this.goodsList.forEach((element) => {
@@ -45,6 +52,7 @@ export default {
     },
   },
   methods: {
+    // 跳转到商品详情
     goToGoodsDetail(value) {
       this.value = "";
       _goToGoodsDetail(this, value);

@@ -5,7 +5,8 @@
  * @FilePath: \mall-vue\src\views\home\components\header\HomeHeader.vue
 -->
 <template>
-  <div id="home-header">
+  <div class="home-header">
+    <!-- 商品搜索组件 -->
     <search :goodsList="goodsList" />
   </div>
 </template>
@@ -37,15 +38,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#home-header {
-  .address {
-    .btn {
-      margin-top: 10px;
-      margin-left: 10px;
-      width: 30vw;
-    }
-  }
-  .search {
-  }
-}
 </style>

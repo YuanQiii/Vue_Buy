@@ -1,19 +1,20 @@
 <!--
- * @Author: your name
- * @Date: 2022-03-21 10:54:45
- * @LastEditTime: 2022-03-21 14:07:21
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Autor: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-28 09:50:18
  * @FilePath: \vue_buy\src\views\eat\menu\EatMenu.vue
 -->
+
 <template>
   <div class="eat-menu">
+    <!-- 菜单导航 -->
     <van-tabs
       :active="active"
       @change="tabsChnage"
       class="tabs"
       color="#28BE57"
     >
+      <!-- 菜单导航下拉列表 -->
       <van-dropdown-menu class="dropdown-menu" active-color="#28BE57">
         <van-dropdown-item
           @change="dropdownChange"
@@ -22,6 +23,7 @@
           :options="dropdownOption"
         />
       </van-dropdown-menu>
+
       <van-tab
         :title="item.name"
         v-for="(item, index) in recipeAllScene"
@@ -41,6 +43,7 @@ export default {
     },
   },
   computed: {
+    // 菜单下拉列表参数
     dropdownOption() {
       let list = [];
       this.recipeAllScene.forEach((element) => {
@@ -60,6 +63,7 @@ export default {
     };
   },
   methods: {
+    // 获取选中菜单名对应的导航索引
     getTabIndex(value) {
       let active = 0;
       this.recipeAllScene.forEach((element, index) => {
@@ -69,10 +73,14 @@ export default {
       });
       return active;
     },
+
+    // 菜单下拉更新导航索引
     dropdownChange(value) {
       this.active = this.getTabIndex(value);
       this.dropdownText = value;
     },
+
+    // 更新导航索引对应的菜单名
     tabsChnage(title, name) {
       this.dropdownText = name;
     },

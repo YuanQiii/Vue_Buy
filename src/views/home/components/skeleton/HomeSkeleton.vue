@@ -5,7 +5,8 @@
  * @FilePath: \mall-vue\src\views\home\components\skeleton\HomeSkeleton.vue
 -->
 <template>
-  <div id="skeleton">
+  <!-- 首页骨架屏 -->
+  <div class="home-skeleton">
     <content-loader
       :width="414"
       :height="836"

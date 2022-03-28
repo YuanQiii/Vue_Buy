@@ -1,11 +1,10 @@
 <!--
- * @Author: your name
- * @Date: 2022-03-21 17:24:24
- * @LastEditTime: 2022-03-21 17:36:47
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Autor: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-28 09:50:18
  * @FilePath: \vue_buy\src\views\cart\like\CartLike.vue
 -->
+
 <template>
   <div class="cart-like">
     <produce-item :productLists="productList" />
@@ -30,13 +29,18 @@ export default {
     };
   },
   methods: {
+    // 获取推荐商品数据
     getCartYouLike() {
-      cartYouLikeApi().then((response) => {
-        let data = response.data;
-        if (data.success) {
-          this.productList = data.data.product_list;
-        }
-      });
+      cartYouLikeApi()
+        .then((response) => {
+          let data = response.data;
+          if (data.success) {
+            this.productList = data.data.product_list;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

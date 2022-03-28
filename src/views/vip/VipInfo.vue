@@ -1,7 +1,15 @@
+<!--
+ * @Autor: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-28 09:50:18
+ * @FilePath: \vue_buy\src\views\vip\VipInfo.vue
+-->
 
 <template>
+  <!-- vip数据信息 -->
   <div class="vip-info" ref="VipInfo">
     <div>
+      <!-- 顶部导航栏 -->
       <van-nav-bar
         :border="false"
         :fixed="true"
@@ -113,6 +121,7 @@ export default {
     VipGoods,
   },
   created() {
+    // 发送获取vip数据请求
     this.getVip();
   },
   data() {
@@ -126,8 +135,7 @@ export default {
     };
   },
   mounted() {
-    // 初始化数据
-    // this._initData();
+    // 添加滚动事件监听
     let box = this.$refs.VipInfo;
     box.addEventListener(
       "scroll",
@@ -144,7 +152,7 @@ export default {
       this.$router.back();
     },
 
-    // 数据请求
+    // vip数据请求
     getVip() {
       vipApi().then((response) => {
         let data = response.data;

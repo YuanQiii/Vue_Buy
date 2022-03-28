@@ -6,13 +6,14 @@
 -->
 <template>
   <div class="home-nav">
+    <!-- 商品分类导航 -->
     <van-grid :column-num="5" :border="false">
       <van-grid-item
         v-for="(nav, index) in navList"
         :key="nav.cid"
         :icon="nav.icon_url"
         :text="nav.name"
-        @click="gotoCategory(index)"
+        @click="goToCategory(index)"
       />
     </van-grid>
   </div>
@@ -27,7 +28,7 @@ export default {
   },
   methods: {
     ...mapMutations(["UPDATE_MENU_ACTIVE"]),
-    gotoCategory(index) {
+    goToCategory(index) {
       this.$router.push({
         name: "category",
       });

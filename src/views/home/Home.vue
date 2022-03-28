@@ -10,23 +10,34 @@
     <home-skeleton v-show="isShowLoading" />
 
     <div v-show="!isShowLoading">
+      <!-- 背景图片 -->
       <div class="bg">
         <img class="image" src="../../images/home/backImage.png" alt="" />
       </div>
 
+      <!-- 搜索组件 -->
       <van-sticky offset-top="2rem">
         <home-header :goodsList="goodsList" />
       </van-sticky>
 
+      <!-- 轮播图和文字广告 -->
       <div class="head">
         <swiper :sowingList="sowingList" />
         <tip :homeAd="homeAd" />
       </div>
+
       <div>
+        <!-- 商品分类导航 -->
         <home-nav :navList="navList" />
+
+        <!-- 绿卡广告 -->
         <home-vip />
       </div>
+
+      <!-- 限时抢购 -->
       <flash-buy :flashSalProductList="flashSalProductList" />
+
+      <!-- 商品列表 -->
       <tabbar-goods-item
         :tabbarAllProductList="tabbarAllProductList"
         :flashSalProductList="flashSalProductList"

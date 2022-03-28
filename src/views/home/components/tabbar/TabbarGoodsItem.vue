@@ -49,29 +49,26 @@
 </template>
 
 <script>
+// 商品列表组件
 import ProduceItem from "./ProduceItem";
 export default {
   name: "TabbarGoodsItem",
+  components: {
+    ProduceItem,
+  },
   props: {
     tabbarAllProductList: Array,
     flashSalProductList: Array,
   },
-  components: {
-    ProduceItem,
-  },
+
   updated() {
+    // 修复导航栏底部条位置错误
     this.$refs.tabs.resize();
   },
   data() {
     return {
       active: 0,
       text: ["全部", "晚餐", "人气", "心选"],
-      itemsTitle: [
-        "common.all",
-        "home.dinner",
-        "home.popularity",
-        "home.goodChoose",
-      ],
     };
   },
 };

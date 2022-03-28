@@ -2,9 +2,10 @@
  * @Author: YuanQiii
  * @GitHub: https://github.com/YuanQiii
  * @Date: 2022-03-18 22:02:26
- * @FilePath: \StudentSummery-Vue\src\components\login\CaptchaLogin.vue
+ * @FilePath: \vue_buy\src\views\login\CaptchaLogin.vue
 -->
 <template>
+  <!-- 验证码登录 -->
   <div class="captcha-login">
     <van-field
       class="tel"
@@ -76,6 +77,7 @@ export default {
   methods: {
     ...mapMutations("user", ["UPDATE_USER_INFO"]),
 
+    // 检查手机号格式
     checkPhone() {
       if (this.reg.test(this.tel)) {
         this.phoneErrorMessage = "";
@@ -85,6 +87,8 @@ export default {
         return false;
       }
     },
+
+    // 检查验证码是否正确
     checkCaptcha() {
       if (this.captcha == this.sms) {
         this.captchaErrorMessage = "";
@@ -94,6 +98,8 @@ export default {
         return false;
       }
     },
+
+    // 获取验证码
     sendCaptcha() {
       if (this.checkPhone()) {
         captchaApi().then((response) => {
@@ -119,11 +125,16 @@ export default {
         }, 1000);
       }
     },
+
+    // 登录
     login() {
       if (this.checkPhone() && this.checkCaptcha()) {
         this.loading = true;
         this.loadingText = "登录中...";
 
+        // 发送登录请求
+        // 初始化生日数据
+        // 跳转到我的页面
         if (this.sms == this.captcha) {
           captchaLoginApi(this.tel, this.sms).then((response) => {
             let data = response.data;

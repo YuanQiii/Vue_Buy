@@ -1,5 +1,6 @@
 <template>
-  <div id="produceItem">
+  <!-- 商品信息缩略组件 -->
+  <div class="produce-item">
     <div
       class="item"
       v-for="(product, index) in productLists"
@@ -13,6 +14,8 @@
         {{ product.price | moneyFormat }}
       </span>
       <span class="originPrice">{{ product.origin_price | moneyFormat }}</span>
+
+      <!-- 阻止点击事件冒泡 -->
       <div class="buyCar" @click.stop="addCart(product)">
         <van-icon name="cart-circle" size="1.5rem" color="#28BE57" />
       </div>
@@ -27,12 +30,8 @@ import { _goToGoodsDetail } from "@/utils/goToGoodsDetail";
 export default {
   name: "ProductItem",
   props: {
+    // 商品数据数组
     productLists: Array,
-  },
-  data() {
-    return {
-      isShowEatTag: false,
-    };
   },
   methods: {
     ...mapMutations("cart", ["ADD_GOODS_CART"]),
@@ -41,6 +40,7 @@ export default {
       // 跳转到商品详情页面并且传值
       _goToGoodsDetail(this, goods);
     },
+    // 添加到购物车
     addCart(product) {
       _addToCart(this, product);
     },
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#produceItem {
+.produce-item {
   background-color: #f5f5f5;
   height: auto;
   padding-left: 2%;

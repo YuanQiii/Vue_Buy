@@ -2,7 +2,7 @@
  * @Author: YuanQiii
  * @GitHub: https://github.com/YuanQiii
  * @Date: 2022-03-19 12:16:17
- * @FilePath: \Vue_Buy\src\store\modules\user.js
+ * @FilePath: \vue_buy\src\store\modules\user.js
  */
 import Vue from "vue";
 
@@ -15,10 +15,11 @@ import {
 } from "../types";
 
 const state = {
-  userInfo: {
-  },
+  // 用户信息
+  userInfo: {},
 };
 const getters = {
+  // 用户名
   userName(state) {
     if (Object.keys(state.userInfo).length) {
       return state.userInfo.userName;
@@ -28,18 +29,27 @@ const getters = {
   },
 };
 const mutations = {
+  // 更新用户信息
   [UPDATE_USER_INFO](state, payload) {
     state.userInfo = payload;
   },
+
+  // 更新用户名
   [UPDATE_USER_NAME](state, payload) {
     Vue.set(state.userInfo, "userName", payload);
   },
+
+  // 更新用户手机号
   [UPDATE_USER_PHONE](state, payload) {
     Vue.set(state.userInfo, "phone", payload);
   },
+
+  // 更新用户性别
   [UPDATE_USER_GENDER](state, payload) {
     Vue.set(state.userInfo, "gender", payload);
   },
+
+  // 更新用户生日
   [UPDATE_USER_BIRTHDAY](state, payload) {
     Vue.set(state.userInfo, "birthday", payload);
   },

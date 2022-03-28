@@ -1,18 +1,15 @@
-<!--
- * @Author: your name
- * @Date: 2022-03-18 14:43:33
- * @LastEditTime: 2022-03-22 13:41:29
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \mall-vue\src\views\category\Category.vue
--->
+
 <template>
   <div class="category">
+    <!-- 骨架屏 -->
     <category-skeleton v-if="skeletonShow" />
 
     <div v-else>
+      <!-- 搜索组件 -->
       <search :goodsList="categoriesGoodsList" class="search" />
+
       <van-sticky offset-top="2rem">
+        <!-- 左侧分类导航 -->
         <van-tree-select
           class="tree"
           height="90vh"
@@ -26,10 +23,11 @@
               v-for="(item, index) in categoriesMenu"
               :key="index"
             >
+              <!-- 商品内容导航 -->
               <category-content
+                v-if="index == menuActive"
                 :currentIndex="menuActive"
                 :categoriesDetailData="categoriesDetailData"
-                v-show="index == menuActive"
               />
             </div>
           </template>
@@ -50,8 +48,9 @@ import Search from "@/components/search/Search.vue";
 export default {
   components: { CategorySkeleton, Search, CategoryContent },
   created() {
+    // 获取分类商品信息
     this.getCategories();
-    this.getCategoriesDetail(0);
+    this.getCategoriesDetail(this.menuActive);
     this.getCategoriesGoods();
   },
   data() {
@@ -63,14 +62,18 @@ export default {
     };
   },
   computed: {
+    // 左侧选中的导航索引
     menuActive: {
       get() {
         return this.$store.state.menuActive;
       },
       set(value) {
+        // 更新索引
         this.UPDATE_MENU_ACTIVE(value);
       },
     },
+
+    // 组合导航数组
     categoriesMenu() {
       let tempArr = [];
       this.categoriesData.forEach((element) => {
@@ -81,6 +84,8 @@ export default {
   },
   methods: {
     ...mapMutations(["UPDATE_MENU_ACTIVE"]),
+
+    // 获取导航分类数据
     getCategories() {
       CategoriesApi()
         .then((response) => {
@@ -93,6 +98,8 @@ export default {
           console.log(error);
         });
     },
+
+    // 获取商品列表
     getCategoriesDetail(index) {
       CategoriesDetailApi(index + 1)
         .then((response) => {
@@ -104,6 +111,8 @@ export default {
           console.log(error);
         });
     },
+
+    // 获取全部商品数据
     getCategoriesGoods() {
       for (let index = 1; index < 19; index++) {
         CategoriesDetailApi(index).then((response) => {
@@ -115,6 +124,8 @@ export default {
         });
       }
     },
+
+    // 切换导航，更新索引和商品列表
     clickNav(index) {
       this.UPDATE_MENU_ACTIVE(index);
       this.getCategoriesDetail(index);

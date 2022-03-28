@@ -6,9 +6,10 @@
  */
 import store from "@/store";
 
+// 跳转到商品详情
 export function _goToGoodsDetail(_this, goods) {
-    store.commit("UPDATE_CURRENT_GOODS_DETAIL", goods)
-    _this.$router.push({
-        name: 'goodsDetail'
-    })
+  store.commit("UPDATE_CURRENT_GOODS_DETAIL", goods);
+  _this.$router.push({
+    name: "goodsDetail",
+  });
 }

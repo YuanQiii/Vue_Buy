@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2022-03-24 14:45:21
- * @LastEditTime: 2022-03-24 14:49:29
+ * @LastEditTime: 2022-03-28 11:43:31
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \vue_buy\src\views\cart\list\CartEmpty.vue
+ * @FilePath: \vue_buy\src\views\cart\empty\CartEmpty.vue
 -->
 <template>
   <div class="cart-empty">
@@ -24,6 +24,7 @@
 export default {
   name: "CartEmpty",
   methods: {
+    // 跳转到首页
     goToHome() {
       this.$router.push({ name: "home" });
     },

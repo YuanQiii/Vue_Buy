@@ -14,6 +14,7 @@
       </transition>
     </div>
 
+    <!-- 底部导航 -->
     <van-tabbar
       :value="homeActive"
       class="active_tab"
@@ -40,10 +41,14 @@ export default {
   computed: {
     ...mapState(["homeActive"]),
     ...mapState("cart", ["cartList"]),
+
+    // 购物车商品数量
     goodsNum() {
       let num = this.cartList.length;
       return num ? num : "";
     },
+
+    // 导航数组
     tabbars() {
       return [
         {
@@ -80,6 +85,7 @@ export default {
     },
   },
   methods: {
+    // 跳转界面
     tab(name) {
       this.$router.push({ name });
     },

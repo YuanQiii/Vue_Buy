@@ -2,7 +2,7 @@
  * @Author: YuanQiii
  * @GitHub: https://github.com/YuanQiii
  * @Date: 2022-03-19 12:29:47
- * @FilePath: \Vue_Buy\src\views\cart\Cart.vue
+ * @FilePath: \vue_buy\src\views\cart\Cart.vue
 -->
 <template>
   <div class="cart">
@@ -12,8 +12,14 @@
       left-arrow
       @click-left="onClickLeft"
     />
+
+    <!-- 购物车为空 -->
     <cart-empty v-show="!cartList.length" />
+
+    <!-- 购物车列表 -->
     <cart-list v-show="cartList.length" />
+
+    <!-- 推荐商品 -->
     <van-divider :style="dividerStyle">猜你喜欢</van-divider>
     <cart-like />
   </div>
@@ -34,6 +40,7 @@ export default {
   },
   data() {
     return {
+      // 分割线样式
       dividerStyle: {
         color: "#000000",
         borderColor: "#28BE57",
@@ -44,6 +51,7 @@ export default {
     ...mapState("cart", ["cartList"]),
   },
   methods: {
+    // 返回
     onClickLeft() {
       this.$router.back();
     },

@@ -2,7 +2,7 @@
  * @Author: YuanQiii
  * @GitHub: https://github.com/YuanQiii
  * @Date: 2022-03-23 21:42:05
- * @FilePath: \vue_buy\src\views\order\components\OrderTimeInterval.vue
+ * @FilePath: \vue_buy\src\views\order\OrderTimeInterval.vue
 -->
 <template>
   <div class="order-interval-list">
@@ -70,11 +70,10 @@
   </div>
 </template>
 <script>
+// 引入第三方库
 import Moment from "moment";
 import "moment/locale/zh-cn";
 require("twix");
-
-import { mapMutations } from "vuex";
 
 export default {
   name: "OrderTimeInterval",
@@ -121,9 +120,7 @@ export default {
       return { today: todayTimeArray, tomorrow: tomorrowTimeArray };
     },
   },
-  components: {},
   methods: {
-    ...mapMutations(["ORDER_TIMEINTERVAL"]),
     // 时间区间段换算
     timeIntervalList(startTime, endTime) {
       // 获取当前时间并分割出年月日

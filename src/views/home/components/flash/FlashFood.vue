@@ -1,21 +1,20 @@
-
 <template>
   <div id="flashFood">
-    <div class="flashItemwrapper" v-if="flashSalProductList">
-      <ul class="itemWrapper" ref="ulWrapper">
+    <div class="flash-item-content" v-if="flashSalProductList">
+      <ul class="item-content" ref="ulContent">
         <li
-          class="itemInCovers"
+          class="item-in-covers"
           v-for="(product, index) in flashSalProductList"
           :key="index"
           ref="productItem"
           @click="goToGoodsDetail(product)"
         >
-          <img v-lazy="product.small_image" class="itemImage" />
+          <img v-lazy="product.small_image" class="image" />
           <span class="title">{{ product.name }}</span>
           <div class="price">
-            <p class="nowPrice">{{ product.price | moneyFormat }}</p>
-            <p class="originPrice">{{ product.origin_price | moneyFormat }}</p>
-            <div class="buyCar" @click.stop="addToCart(product)">
+            <p class="now-price">{{ product.price | moneyFormat }}</p>
+            <p class="origin-price">{{ product.origin_price | moneyFormat }}</p>
+            <div class="buy-car" @click.stop="addToCart(product)">
               <van-icon class="cart" color="#28BE57" name="cart-circle" />
             </div>
           </div>
@@ -42,16 +41,16 @@ export default {
   },
   updated() {
     this.$nextTick(() => {
-      let contentWrapperWidth = 0;
+      let contentWidth = 0;
       let el = this.$refs.productItem;
       for (let i = 0; i < el.length; i++) {
-        contentWrapperWidth += el[i].clientWidth;
+        contentWidth += el[i].clientWidth;
       }
       // 给ul设置值
-      this.$refs.ulWrapper.style.width = contentWrapperWidth + "px";
+      this.$refs.ulContent.style.width = contentWidth + "px";
       if (!this.scroll) {
         // 名字一定要唯一 和父组件独立
-        this.scroll = new BScroll(".flashItemwrapper", {
+        this.scroll = new BScroll(".flash-item-content", {
           probeType: 2,
           startX: 0,
           click: true,
@@ -81,7 +80,7 @@ export default {
 </script>
 <style lang="less" scoped>
 #flashFood {
-  .flashItemwrapper {
+  .flash-item-content {
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -99,17 +98,17 @@ export default {
         border-radius: 50%;
       }
     }
-    .itemWrapper {
+    .item-content {
       display: flex;
       justify-content: flex-start;
     }
 
-    .itemInCovers {
+    .item-in-covers {
       // 设置子li的宽度
       flex: 0 0 6rem;
       align-items: center;
       padding-right: 0.5rem;
-      .itemImage {
+      .image {
         width: 100%;
         border-radius: 50%;
         // 等比缩小图片来适应元素的尺寸
@@ -133,97 +132,29 @@ export default {
       .price {
         position: relative;
         padding-left: 0.5rem;
-        .nowPrice {
+        .now-price {
           color: #f37078;
           font-size: 0.928rem;
         }
-        .originPrice {
+        .origin-price {
           font-size: 0.6875rem;
           color: #999999;
           text-decoration: line-through;
         }
-        .buyCar {
+        .buy-car {
           position: absolute;
           right: 0.6rem;
           top: 0.1rem;
           width: 1.5rem;
           height: 1.5rem;
+          .cart {
+            font-size: 1.5rem;
+            margin-left: -0.2rem;
+            margin-top: -0.2rem;
+          }
         }
       }
     }
-  }
-  @keyframes mymove {
-    0% {
-      transform: scale(1);
-    }
-    25% {
-      transform: scale(0.8);
-    }
-    50% {
-      transform: scale(0.6);
-    }
-    75% {
-      transform: scale(0.4);
-    }
-    100% {
-      transform: scale(0.2);
-    }
-  }
-  @-moz-keyframes mymove {
-    0% {
-      transform: scale(1);
-    }
-    25% {
-      transform: scale(0.8);
-    }
-    50% {
-      transform: scale(0.6);
-    }
-    75% {
-      transform: scale(0.4);
-    }
-    100% {
-      transform: scale(0.2);
-    }
-  }
-  @-webkit-keyframes mymove {
-    0% {
-      transform: scale(1);
-    }
-    25% {
-      transform: scale(0.8);
-    }
-    50% {
-      transform: scale(0.6);
-    }
-    75% {
-      transform: scale(0.4);
-    }
-    100% {
-      transform: scale(0.2);
-    }
-  }
-  @-o-keyframes mymove {
-    0% {
-      transform: scale(1);
-    }
-    25% {
-      transform: scale(0.8);
-    }
-    50% {
-      transform: scale(0.6);
-    }
-    75% {
-      transform: scale(0.4);
-    }
-    100% {
-      transform: scale(0.2);
-    }
-  }
-  .cart {
-    font-size: 1.5rem;
-    margin-left: -0.2rem;
-    margin-top: -0.2rem;
   }
 }
 </style>

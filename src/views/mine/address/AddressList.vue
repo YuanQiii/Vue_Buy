@@ -1,12 +1,12 @@
 <!--
- * @Author: your name
- * @Date: 2022-03-23 14:24:24
- * @LastEditTime: 2022-03-25 16:14:10
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Autor: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-28 09:50:18
  * @FilePath: \vue_buy\src\views\mine\address\AddressList.vue
 -->
+
 <template>
+  <!-- 地址列表 -->
   <div class="my-address">
     <!--导航栏-->
     <van-nav-bar
@@ -43,6 +43,8 @@ export default {
   computed: {
     ...mapState("cart", ["addressList", "orderAddress"]),
     ...mapGetters("cart", ["defaultAddressId"]),
+
+    // 选中地址id
     choose() {
       return this.$route.params.choose;
     },
@@ -52,6 +54,7 @@ export default {
       },
       set(value) {
         if (!this.choose) {
+          // 更新默认地址
           this.UPDATE_DEFAULT_ADDRESS(value);
         }
       },
@@ -59,15 +62,21 @@ export default {
   },
   methods: {
     ...mapMutations("cart", ["UPDATE_ORDER_ADDRESS", "UPDATE_DEFAULT_ADDRESS"]),
+
+    // 返回
     onClickLeft() {
       this.$router.back();
     },
+
+    // 订单页面选择地址后返回
     onSelectAddress(item) {
       if (this.choose) {
         this.UPDATE_ORDER_ADDRESS(item);
         this.$router.back();
       }
     },
+
+    // 添加地址
     onAdd() {
       this.$router.push({
         name: "AddressEdit",
@@ -77,6 +86,8 @@ export default {
         },
       });
     },
+
+    // 编辑地址
     onEdit(item, index) {
       this.$router.push({
         name: "AddressEdit",

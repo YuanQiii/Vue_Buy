@@ -5,13 +5,9 @@
  * @FilePath: \mall-vue\src\views\home\components\Swiper\Swiper.vue
 -->
 <template>
-  <div id="swiper">
-    <van-swipe
-      class="my-swipe"
-      :autoplay="3000"
-      indicator-color="white"
-      @change="onChange"
-    >
+  <div class="swiper">
+    <!-- 轮播图组件 -->
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(value, index) in sowingList" :key="index">
         <img class="image" :src="value.icon_url" />
       </van-swipe-item>
@@ -25,16 +21,11 @@ export default {
   props: {
     sowingList: Array,
   },
-  methods: {
-    onChange(index) {
-      //   console.log(index);
-    },
-  },
 };
 </script>
 
 <style lang="less" scoped>
-#swiper {
+.swiper {
   .my-swipe {
     width: 95vw;
     margin-top: 2rem;

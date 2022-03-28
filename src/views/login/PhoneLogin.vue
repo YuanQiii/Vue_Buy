@@ -2,9 +2,10 @@
  * @Author: YuanQiii
  * @GitHub: https://github.com/YuanQiii
  * @Date: 2022-03-18 21:51:07
- * @FilePath: \StudentSummery-Vue\src\components\login\PhoneLogin.vue
+ * @FilePath: \vue_buy\src\views\login\PhoneLogin.vue
 -->
 <template>
+  <!-- 手机登录 -->
   <div class="phone-login">
     <van-field
       class="tel"
@@ -65,6 +66,7 @@ export default {
   methods: {
     ...mapMutations("user", ["UPDATE_USER_INFO"]),
 
+    // 检查手机号格式
     checkPhone() {
       if (this.reg.test(this.tel)) {
         this.phoneErrorMessage = "";
@@ -74,6 +76,8 @@ export default {
         return false;
       }
     },
+
+    // 检查密码格式
     checkPassword() {
       if (this.password.length < 6) {
         this.passwordErrorMessage = "密码长度最小6位";
@@ -86,11 +90,15 @@ export default {
         return true;
       }
     },
+
+    // 登录
     login() {
       if (this.checkPhone() && this.checkPassword()) {
         this.loading = true;
         this.loadingText = "登录中...";
 
+        // 发送登录请求获取用户信息
+        // 返回到我的页面
         passwordLoginApi(this.tel, this.password).then((response) => {
           let data = response.data;
           if (data.success_code == 200) {

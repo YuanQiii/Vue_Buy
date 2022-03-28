@@ -5,7 +5,7 @@
  * @FilePath: \vue_buy\src\views\home\components\vip\HomeVip.vue
 -->
 <template>
-  <div id="vipPage" @click="goToVip">
+  <div class="vip-page" @click="goToVip">
     <van-icon name="vip-card-o" class="icon" size="1.5rem" color="#ffffff" />
     <span class="title">{{ text[0] }}</span>
     <span class="subTitle">{{ text[1] }}</span>
@@ -21,6 +21,7 @@ export default {
     };
   },
   methods: {
+    // 跳转到vip详情页面
     goToVip() {
       this.$router.push({
         name: "VipInfo",
@@ -31,7 +32,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#vipPage {
+.vip-page {
   display: flex;
   justify-content: flex-start;
   align-items: center;

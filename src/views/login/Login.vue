@@ -2,10 +2,11 @@
  * @Author: YuanQiii
  * @GitHub: https://github.com/YuanQiii
  * @Date: 2022-03-18 21:47:08
- * @FilePath: \StudentSummery-Vue\src\components\login\Login.vue
+ * @FilePath: \vue_buy\src\views\login\Login.vue
 -->
 <template>
   <div class="login">
+    <!-- 顶部导航 -->
     <van-nav-bar title="用户登录" left-arrow @click-left="onClickLeft" />
 
     <van-tabs v-model="active" swipeable animated line-width="4rem">
@@ -49,12 +50,15 @@ export default {
     };
   },
   methods: {
+    // 跳转到登录页面
     initLogin() {
       this.active = 0;
     },
+    // 弹窗
     popup(text) {
       this.$toast(text);
     },
+    // 返回
     onClickLeft() {
       this.$router.back();
     },

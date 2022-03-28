@@ -5,6 +5,7 @@
  * @FilePath: \vue_buy\src\views\vip\VipPay.vue
 -->
 <template>
+  <!-- vip购买页面 -->
   <div class="vip-pay">
     <van-nav-bar
       title="开通绿卡"
@@ -14,6 +15,8 @@
       left-arrow
       style="height: 2.5rem"
     />
+
+    <!-- 用户信息 -->
     <div class="userInfoBox">
       <img class="iconImage" src="../../images/mine/avt.png" alt="" />
       <div class="personInfo">
@@ -21,6 +24,7 @@
         <i>{{ vipTipMsg }}</i>
       </div>
     </div>
+
     <div class="vipDesc">
       <p>开通绿卡享三大权益,预计每单省6.66元</p>
       <van-grid :column-num="3" :border="false">
@@ -106,6 +110,7 @@
       </van-cell-group>
     </van-radio-group>
 
+    <!-- 支付按钮 -->
     <div class="payButton" @click="clickPay">立即支付</div>
   </div>
 </template>

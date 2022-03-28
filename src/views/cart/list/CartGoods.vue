@@ -1,12 +1,11 @@
 <!--
- * @Author: your name
- * @Date: 2022-03-24 14:50:33
- * @LastEditTime: 2022-03-25 09:53:54
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \vue_buy\src\views\cart\list\CartGoodsItem.vue
+ * @Autor: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-28 09:50:18
+ * @FilePath: \vue_buy\src\views\cart\list\CartGoods.vue
 -->
 <template>
+  <!-- 购物车列表 -->
   <div class="cart-goods">
     <div class="box" v-for="(goods, index) in cartList" :key="index">
       <van-checkbox
@@ -42,6 +41,8 @@
           </div>
         </div>
       </div>
+
+      <!-- 结算按钮 -->
       <van-submit-bar
         class="all"
         :price="totalPrice"
@@ -49,6 +50,7 @@
         v-show="cartList.length"
         @submit="onSubmit"
       >
+        <!-- 全选按钮 -->
         <van-checkbox v-model="checkedAll" checked-color="#45c763"
           >全部</van-checkbox
         >
@@ -66,9 +68,11 @@ export default {
     ...mapGetters("cart", ["totalPrice"]),
     checkedAll: {
       get() {
+        // 判断购物车是否全选
         return this.cartList.every((element) => element.checked);
       },
       set(value) {
+        // 更新购物车里全部商品对象的checked属性
         this.cartList.forEach((element) => {
           this.UPDATE_GOODS_CART_CHECKED({
             id: element.id,
@@ -78,21 +82,22 @@ export default {
       },
     },
   },
-  data() {
-    return {};
-  },
   methods: {
     ...mapMutations("cart", [
       "UPDATE_GOODS_CART_NUM",
       "DEL_GOODS_CART",
       "UPDATE_GOODS_CART_CHECKED",
     ]),
+
+    // 更新单个商品对象的checked属性
     changeCheck(goods) {
       this.UPDATE_GOODS_CART_CHECKED({
         id: goods.id,
         checked: !goods.checked,
       });
     },
+
+    // 跳转到订单页面
     onSubmit() {
       if (this.totalPrice > 0) {
         this.$router.push({
@@ -102,12 +107,16 @@ export default {
         this.$toast("请选择需要结算的商品");
       }
     },
+
+    // 增加商品数量
     increaseNum(id) {
       this.UPDATE_GOODS_CART_NUM({
         id,
         value: 1,
       });
     },
+
+    // 减少商品数量，为0时删除商品
     decreaseNum(id) {
       let num = 0;
 

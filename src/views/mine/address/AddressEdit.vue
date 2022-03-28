@@ -1,12 +1,12 @@
 <!--
- * @Author: your name
- * @Date: 2022-03-23 15:13:27
- * @LastEditTime: 2022-03-25 16:17:56
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Autor: YuanQiii
+ * @GitHub: https://github.com/YuanQiii
+ * @Date: 2022-03-28 09:50:18
  * @FilePath: \vue_buy\src\views\mine\address\AddressEdit.vue
 -->
+
 <template>
+  <!-- 收货地址编辑 -->
   <div class="address-edit">
     <!--导航栏-->
     <van-nav-bar
@@ -52,6 +52,8 @@ export default {
   },
   computed: {
     ...mapState("cart", ["addressList"]),
+
+    // 地址编辑模式
     modeName() {
       if (this.mode == "add") {
         return "添加地址";
@@ -68,6 +70,8 @@ export default {
     addressId() {
       return this.$route.params.id;
     },
+
+    // 删除按钮回调函数
     deleteShow() {
       if (this.mode == "add") {
         return false;

@@ -6,7 +6,7 @@
 -->
 <template>
   <div class="vip-goods">
-    <!-- 商品内容列表 -->
+    <!-- VIP商品列表 -->
     <section class="r_list" ref="r_list">
       <div>
         <ul>
@@ -49,6 +49,7 @@ export default {
     vipCateDetail: Array,
   },
   methods: {
+    // 跳转到vip购买页面
     goToVipPage() {
       this.$router.push({ name: "VipPay" });
     },
