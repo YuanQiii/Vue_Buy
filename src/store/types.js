@@ -4,6 +4,7 @@
  * @Date: 2022-03-28 09:50:18
  * @FilePath: \vue_buy\src\store\types.js
  */
+
 // 更新分类索引
 export const UPDATE_MENU_ACTIVE = "UPDATE_MENU_ACTIVE";
 
