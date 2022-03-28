@@ -22,7 +22,6 @@ const CouponList = () => import("@/views/mine/coupon/CouponList.vue");
 const AddressList = () => import("@/views/mine/address/AddressList.vue");
 const AddressEdit = () => import("@/views/mine/address/AddressEdit.vue");
 
-const Map = () => import("@/views/map/Map.vue");
 const Login = () => import("@/views/login/Login.vue");
 const VipInfo = () => import("@/views/vip/VipInfo.vue");
 const VipPay = () => import("@/views/vip/VipPay.vue");
@@ -40,11 +39,6 @@ const routes = [
     meta: {
       keepAlive: true,
     },
-  },
-  {
-    path: "/map",
-    name: "map",
-    component: Map,
   },
   {
     path: "/login",
