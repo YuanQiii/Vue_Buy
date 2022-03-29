@@ -90,12 +90,17 @@ export default {
 
 <style lang="less" scoped>
 .eat-menu {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  width: 100vw;
   .tabs {
+    width: 96vw;
   }
   .dropdown-menu {
-    width: 90vw;
+    width: 96vw;
     margin-top: 0.5rem;
-    margin-left: 4vw;
   }
 }
 </style>
