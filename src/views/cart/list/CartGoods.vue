@@ -14,12 +14,12 @@
         @input="changeCheck(goods)"
       />
       <div class="info">
-        <img class="image" :src="goods.small_image" />
+        <img class="image" :src="goods.small_image" @click="goToGoodsDetail(goods)"/>
         <div class="detail">
-          <div class="name">
+          <div class="name" @click="goToGoodsDetail(goods)">
             {{ goods.name }}
           </div>
-          <div class="price">
+          <div class="price" @click="goToGoodsDetail(goods)">
             {{ goods.price | moneyFormat }}
           </div>
           <div class="option">
@@ -30,7 +30,7 @@
               @click="decreaseNum(goods.id)"
               ><van-icon name="minus"
             /></van-button>
-            <div class="text">{{ goods.cart_num }}</div>
+            <div class="count">{{ goods.cart_num }}</div>
             <van-button
               class="btn"
               size="small"
@@ -61,6 +61,8 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from "vuex";
+
+import { _goToGoodsDetail } from "@/utils/goToGoodsDetail";
 export default {
   name: "CartGoods",
   computed: {
@@ -143,19 +145,24 @@ export default {
         });
       }
     },
+
+    // 跳转商品详情
+    goToGoodsDetail(goods){
+      _goToGoodsDetail(this, goods)
+    }
   },
 };
 </script>
 
 <style lang="less" scoped>
 .cart-goods {
+  margin-top: 1rem;
   .box {
     width: 100vw;
     background-color: #fff;
     position: relative;
     padding-left: 1rem;
     padding-right: 1rem;
-    margin-top: 1rem;
     display: flex;
     .info {
       display: flex;
@@ -177,7 +184,7 @@ export default {
         top: 3.4rem;
         left: 70vw;
         display: flex;
-        .text {
+        .count {
           line-height: 1.5rem;
           width: 2rem;
           text-align: center;

@@ -28,7 +28,7 @@
       </div>
       <div class="item" @click="goToOrder(3)">
         <van-icon size="1.5rem" name="cash-back-record" />
-        <div class="text last">售后/退款</div>
+        <div class="text">售后/退款</div>
       </div>
     </div>
   </div>
@@ -57,13 +57,12 @@ export default {
   .top {
     display: flex;
     justify-content: space-between;
-    font-size: 0.5rem;
+    font-size: 1rem;
     color: #999;
     .order {
       display: flex;
       .text {
         color: #000;
-        margin-top: 0.2rem;
       }
     }
   }
@@ -73,14 +72,10 @@ export default {
     padding-right: 1rem;
     display: flex;
     justify-content: space-between;
+    text-align: center;
     .text {
-      font-size: 0.5rem;
+      font-size: 1rem;
       color: #999;
-      text-align: center;
-      margin-left: -0.2rem;
-    }
-    .last {
-      margin-left: -0.6rem;
     }
   }
 }

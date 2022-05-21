@@ -6,7 +6,7 @@
 -->
 <template>
   <!-- 手机登录 -->
-  <div class="phone-login">
+  <div class="phone-login" :style="loginHeight">
     <van-field
       class="tel"
       v-model="tel"
@@ -50,7 +50,9 @@ import Moment from "moment";
 
 export default {
   name: "PhoneLogin",
-  props: {},
+  mounted() {
+    this.loginHeight = `height: ${document.body.clientHeight}px`;
+  },
   data() {
     return {
       tel: "",
@@ -61,6 +63,7 @@ export default {
       reg: /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/,
       loading: false,
       loadingText: "",
+      loginHeight: "height: 100vh",
     };
   },
   methods: {

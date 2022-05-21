@@ -20,7 +20,7 @@
       :coupons="availableCouponList[0]"
       :disabled-coupons="availableCouponList[1]"
       style="margin-top: 3rem"
-      input-placeholder="请输入123兑换"
+      input-placeholder="请输入 江哥牛逼 兑换"
       @exchange="onExchange"
     />
   </div>
@@ -55,7 +55,7 @@ export default {
 
     onExchange(code) {
       // 兑换优惠券
-      if (code == "123") {
+      if (code == "江哥牛逼") {
         let time = new Date().getTime();
         let yearTime = 31536000000;
         let coupon = {
@@ -86,6 +86,7 @@ export default {
   bottom: 0;
   background-color: #f5f5f5;
   z-index: 999;
+
   .van-nav-bar__title {
     color: black;
   }

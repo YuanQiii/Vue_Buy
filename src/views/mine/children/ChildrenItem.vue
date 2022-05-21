@@ -73,18 +73,17 @@ export default {
   .left {
     display: flex;
     .text {
-      font-size: 0.5rem;
-      margin-top: 0.05rem;
+      font-size: 1rem;
       margin-left: 0.3rem;
     }
     .new {
-      margin-top: -0.3rem;
       margin-left: 0.5rem;
+      margin-top: -0.45rem;
     }
   }
   .right {
     display: flex;
-    font-size: 0.5rem;
+    font-size: 1rem;
     color: #999;
     .num {
       margin-right: 0.5rem;

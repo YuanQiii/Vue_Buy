@@ -5,7 +5,7 @@
  * @FilePath: \vue_buy\src\views\login\Login.vue
 -->
 <template>
-  <div class="login">
+  <div class="login" ref="login">
     <!-- 顶部导航 -->
     <van-nav-bar title="用户登录" left-arrow @click-left="onClickLeft" />
 
@@ -24,7 +24,7 @@
       </van-tab>
     </van-tabs>
 
-    <div class="tip">
+    <div class="tip" :style="offsetTop">
       <div class="text1">温馨提示：</div>
       <div class="text1">
         未注册的手机号，登录时将自动注册，且代表同意<span
@@ -44,9 +44,13 @@ import Register from "./Register.vue";
 export default {
   components: { PhoneLogin, CaptchaLogin, Register },
   name: "Login",
+  mounted() {
+    this.offsetTop = `margin-top: -${document.body.clientHeight * 0.7}px`;
+  },
   data() {
     return {
       active: 0,
+      offsetTop: "margin-top: -70vh",
     };
   },
   methods: {
@@ -79,6 +83,7 @@ export default {
     padding: 1rem;
     font-size: 1rem;
     color: #999;
+    margin-top: -70vh;
     .text2 {
       color: blue;
     }

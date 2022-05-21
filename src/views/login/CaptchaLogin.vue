@@ -6,7 +6,7 @@
 -->
 <template>
   <!-- 验证码登录 -->
-  <div class="captcha-login">
+  <div class="captcha-login" :style="loginHeight">
     <van-field
       class="tel"
       v-model="tel"
@@ -60,6 +60,9 @@ import Moment from "moment";
 
 export default {
   name: "CaptchaLogin",
+  mounted() {
+    this.loginHeight = `height: ${document.body.clientHeight}px`;
+  },
   data() {
     return {
       tel: "",
@@ -72,6 +75,7 @@ export default {
       captchaBtnText: "发送验证码",
       captchaDisabled: false,
       captcha: "",
+      loginHeight: "height: 100vh",
     };
   },
   methods: {

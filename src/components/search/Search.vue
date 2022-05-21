@@ -15,6 +15,11 @@
         {{ value.name }}
       </div>
     </div>
+    <div class="result" v-show="!filterGoods.length && value">
+      <div class="text">
+        暂无搜索结果
+      </div>
+    </div>
   </div>
 </template>
 
@@ -99,6 +104,11 @@ export default {
       margin-right: 1rem;
       line-height: 3rem;
       border-bottom: solid 1px #000;
+    }
+
+    .text{
+      line-height: 3rem;
+      text-align: center;
     }
   }
 }

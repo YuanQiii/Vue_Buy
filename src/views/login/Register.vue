@@ -6,7 +6,7 @@
 -->
 <template>
   <!-- 注册 -->
-  <div class="register">
+  <div class="register" :style="loginHeight">
     <van-field
       class="tel"
       v-model="tel"
@@ -68,6 +68,9 @@ import { mapMutations } from "vuex";
 
 export default {
   name: "Register",
+  mounted() {
+    this.loginHeight = `height: ${document.body.clientHeight}px`;
+  },
   data() {
     return {
       tel: "",
@@ -82,6 +85,7 @@ export default {
       captchaBtnText: "发送验证码",
       captchaDisabled: false,
       captcha: "",
+      loginHeight: "height: 100vh",
     };
   },
   methods: {

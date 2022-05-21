@@ -108,7 +108,7 @@ export default {
 /*转场动画*/
 .router-slider-enter-active,
 .router-slider-leave-active {
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 .router-slider-enter,
 .router-slider-leave-active {
