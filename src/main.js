@@ -24,23 +24,23 @@ window.addEventListener('load', () => {
 // fastclick.attach(document.body)
 
 // prod
-import waterfall from "vue-waterfall2";
-Vue.use(waterfall);  
-Vue.use(vant.Lazyload);
+// import waterfall from "vue-waterfall2";
+// Vue.use(waterfall);  
+// Vue.use(vant.Lazyload);
 
 // dev
-// import waterfall from "vue-waterfall2";
-// import 'normalize.css/normalize.css'
-// import VueClipboard from "vue-clipboard2";
+import waterfall from "vue-waterfall2";
+import 'normalize.css/normalize.css'
+import VueClipboard from "vue-clipboard2";
 
-// import "vant/lib/index.css";
-// import Vant from "vant";
-// import { Lazyload } from 'vant'
+import "vant/lib/index.css";
+import Vant from "vant";
+import { Lazyload } from 'vant'
 
-// Vue.use(VueClipboard);
-// Vue.use(Vant);
-// Vue.use(Lazyload);
-// Vue.use(waterfall);
+Vue.use(VueClipboard);
+Vue.use(Vant);
+Vue.use(Lazyload);
+Vue.use(waterfall);
 
 Vue.filter("moneyFormat", (value) => {
   return "¥" + Number(value).toFixed(2);
