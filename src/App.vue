@@ -1,32 +1,40 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-15 20:59:27
+ * @LastEditTime: 2022-03-22 09:38:20
+ * @LastEditors: your name
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue_buy\src\App.vue
+-->
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <keep-alive exclude="Order">
+      <router-view />
+    </keep-alive>
   </div>
-</template>
+</template> 
+
+<script>
+window.onload = function () {
+  document.addEventListener("touchstart", function (event) {
+    if (event.touches.length > 1) {
+      event.preventDefault();
+    }
+  });
+  document.addEventListener("gesturestart", function (event) {
+    event.preventDefault();
+  });
+};
+</script>
+
 
 <style lang="less">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  width: 100%;
+  height: 100%;
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+* {
+  touch-action: pan-y;
 }
 </style>
